@@ -1,0 +1,27 @@
+name: # the name of the action
+description: # additional descriptive info about the action
+runs:
+  using: "docker"
+  image: "Dockerfile"
+inputs:
+  github_token:
+    description: "Github authorisation token. Note, this token must have permission to make administrative changes to the repo (for bypassing branch protection), so the default GITHUB_TOKEN is not appropriate"
+    required: true
+  remote_name:
+    description: "The name of the remote repository (default: origin)"
+    required: false
+    default: "origin"
+  ignore_branches:
+    description: "List of branch patterns to ignore when cleaning up trailing branches. (Grep patterns permitted)"
+    required: false
+    default: "hotfix/* feature/*"
+  backup_dir:
+    description: "Directory name for backups to be stored"
+    required: false
+    default: tag-deletion-cleanup
+outputs:
+  cleaned:
+    description: "List of cleaned up branches (comma-separated)"
+
+
+# for additional options, see: https://help.github.com/en/articles/metadata-syntax-for-github-actions
