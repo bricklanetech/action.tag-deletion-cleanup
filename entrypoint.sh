@@ -196,4 +196,4 @@ for branch in $(git for-each-ref --format="%(refname:short)" | grep "${ORIGIN}/"
 done
 echo ""
 # return list of cleaned up branches
-echo "::set-output name=cleaned::$(echo $CLEANED | sed -e 's/,*$//')"
+echo "cleaned=$(echo $CLEANED | sed -e 's/,*$//')" >> $GITHUB_OUTPUT
